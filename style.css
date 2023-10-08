@@ -1,5 +1,7 @@
 header {
-    min-height: 15vh;
+    border: none; 
+    margin: 0; 
+    padding: 0; 
 }
 
 main {
@@ -72,7 +74,7 @@ legend{
     margin-top: 8px;
 }
 .carousel-item{
-    height: 50vh;
+    height: 40vh;
 }
 #carouselExampleCaptions img{
     object-fit: cover;
