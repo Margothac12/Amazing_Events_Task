@@ -71,5 +71,6 @@ fieldset {
 legend{
     margin-top: 8px;
 }
-
-
+.carousel-inner {
+    max-height: 25vh;
+}
