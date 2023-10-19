@@ -1,7 +1,7 @@
+console.log("HolaINDEX h ")
 const contenedorHomeCard = document.getElementById("contTarjetasIndex");
 const arrayDeEventos = data.events;
 
-console.log("HolaINDEX "+contenedorHomeCard)
 for (let event of arrayDeEventos) {
     contenedorHomeCard.classList.add('d-flex', 'justify-content-around', 'flex-wrap', 'cardaround');
     const creadorCards = document.createElement("div");

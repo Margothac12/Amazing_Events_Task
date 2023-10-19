@@ -100,7 +100,10 @@ h5 {
     padding: 10px;
     margin: 10px;
 }
-
+.contTarjetas h5 {
+    font-size: 1rem;
+    text-shadow: 0rem 6px 7px rgb(155, 222, 20);
+}
 .container {
     padding: 100px;
     max-width: 100%;
