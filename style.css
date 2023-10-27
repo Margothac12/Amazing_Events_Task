@@ -150,3 +150,11 @@ h2{
         align-items: center;
     }
 }
+.checkboxes{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+input{
+    color: black;
+}

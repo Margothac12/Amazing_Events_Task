@@ -9,7 +9,7 @@ for (const event of arrayDeEventos) {
         const creadorCards = document.createElement('div')
         creadorCards.classList.add('d-flex', 'justify-content-around', 'flex-wrap')
         creadorCards.innerHTML = (
-            `<div class="card my-3" style="width: 18rem;">
+            `<div class="card my-3" id= ${event.id} style="width: 18rem;">
                 <img src=${event.image} class="card-img-top" height="191"
                 alt="food fair">
                 <div class="card-body">
