@@ -49,14 +49,7 @@ function filtrarCategory() {
     let checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value)
     console.log("Holi checked", checked);
     arrayDeEventos.forEach(function (evento) {
-        let tarjeta = document.getElementById(evento._id); // Obtiene html de la tarjeta: <div>
-        //checked es una array de texto, includes busca si existe ese texto en el array
-            if(checked.includes(evento.category)){  
-                tarjeta.style.display = "block";
-            }else{
-                tarjeta.style.display = "none";
-                console.log("Oculto Cartas que no coinciden con el filtro")
-            }
+        
 
     })
    

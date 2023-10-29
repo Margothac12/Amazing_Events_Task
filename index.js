@@ -56,7 +56,7 @@ function filtrarCategory() {
         let tarjeta = document.getElementById(evento._id); // Obtiene html de la tarjeta: <div>
 
         //checked es una array de texto, includes busca si existe ese texto en el array
-            if(checked.includes(evento.category)){  
+            if(checked.includes(evento.category) || checked.length === 0){  
                 tarjeta.style.display = "block";
             }else{
                 tarjeta.style.display = "none";
