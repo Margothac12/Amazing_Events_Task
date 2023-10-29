@@ -9,7 +9,7 @@ function creadorCartas(params) {
         creadorCards.classList.add('d-flex', 'justify-content-around', 'flex-wrap');
 
         creadorCards.innerHTML = `
-            <div class="card my-3" id=${event.id}  style="width: 18rem;">
+            <div class="card my-3" id=${event._id}  style="width: 18rem;">
                 <img src="${event.image}" class="card-img-top" height="191" alt="food fair">
                 <div class="card-body">
                     <h5 class="card-title">${event.name}</h5>
@@ -58,9 +58,13 @@ function filtrarCategory() {
             console.log("recorrido check ", check);
             if (evento.category == check) {
                 console.log("CATEGORIA Y CHECK IGUAL");
-                
+                let tarjeta = document.getElementById(evento._id)
+                tarjeta.style.display="block";
+            } else {
+             document.getElementById(evento._id) 
+            let tarjeta = document.getElementById(evento._id)
+            tarjeta.style.display="none";
             }
         })
     })
-
 }
