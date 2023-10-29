@@ -53,18 +53,16 @@ function filtrarCategory() {
     console.log("Holi checked", checked);
     let catFiltrada = []
     arrayDeEventos.forEach(function (evento) {
-        console.log("aqui la categiria", evento.category);
-        checked.forEach(function (check) {
-            console.log("recorrido check ", check);
-            if (evento.category == check) {
-                console.log("CATEGORIA Y CHECK IGUAL");
-                let tarjeta = document.getElementById(evento._id)
-                tarjeta.style.display="block";
-            } else {
-             document.getElementById(evento._id) 
-            let tarjeta = document.getElementById(evento._id)
-            tarjeta.style.display="none";
+        let tarjeta = document.getElementById(evento._id); // Obtiene html de la tarjeta: <div>
+
+        //checked es una array de texto, includes busca si existe ese texto en el array
+            if(checked.includes(evento.category)){  
+                tarjeta.style.display = "block";
+            }else{
+                tarjeta.style.display = "none";
+                console.log("Oculto Cartas que no coinciden con el filtro")
             }
-        })
+
     })
+   
 }
