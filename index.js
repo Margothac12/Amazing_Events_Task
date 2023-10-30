@@ -46,7 +46,7 @@ function checkboxesMarcar(arrayCategory) {
 
 }
 checkboxesMarcar(arrayDeCheckboxes)
-
+let eventsFilter = [] //se añaden los eventos
 checkboxesIndex.addEventListener('change', filtrarCategory)
 function filtrarCategory() {
     let checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value)
@@ -57,11 +57,25 @@ function filtrarCategory() {
         //checked es una array de texto, includes busca si existe ese texto en el array
         if (checked.includes(evento.category) || checked.length === 0) {
             tarjeta.style.display = "block";
+            eventsFilter.push(evento)
+            console.log("eventos de eventsFilter: ", eventsFilter);
         } else {
             tarjeta.style.display = "none";
             console.log("Oculto Cartas que no coinciden con el filtro")
         }
 
     })
-
 }
+
+const searchI = document.getElementById("searchIndex");
+searchIndex.addEventListener('submit', logSumit)
+function logSumit(event) {
+    console.log("formulario submited");
+    event.preventDefault();
+    const texto = document.getElementById("buscarName").value;
+    console.log("Palabra en el BUSCADOR: ", texto);
+}
+
+
+
+
