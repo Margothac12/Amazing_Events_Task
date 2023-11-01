@@ -2,11 +2,16 @@ console.log("HolaINDEX")
 const contenedorHomeCard = document.getElementById("contTarjetasIndex");
 const arrayDeEventos = data.events;
 console.log("cada evento", data.events);
+let eventsFilter = [] //se añaden los eventos
 function creadorCartas(params) {
     for (let event of arrayDeEventos) {
         contenedorHomeCard.classList.add('d-flex', 'justify-content-around', 'flex-wrap', 'cardaround');
         const creadorCards = document.createElement("div");
         creadorCards.classList.add('d-flex', 'justify-content-around', 'flex-wrap');
+
+      
+        eventsFilter.push(event)
+
 
         creadorCards.innerHTML = `
             <div class="card my-3" id=${event._id}  style="width: 18rem;">
@@ -46,7 +51,7 @@ function checkboxesMarcar(arrayCategory) {
 
 }
 checkboxesMarcar(arrayDeCheckboxes)
-let eventsFilter = [] //se añaden los eventos
+
 checkboxesIndex.addEventListener('change', filtrarCategory)
 function filtrarCategory() {
     let checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value)
@@ -74,8 +79,17 @@ function logSumit(event) {
     event.preventDefault();
     const texto = document.getElementById("buscarName").value;
     console.log("Palabra en el BUSCADOR: ", texto);
+
+    eventsFilter.forEach(function(evento) {
+        let eventosMostrados = document.getElementById(evento._id);
+        console.log("Aqui los eventosMostrados: ",eventosMostrados);
+        if (evento.name.toLowerCase() == texto.toLowerCase() ) {
+            console.log("eventos de eventsFilter: ", eventsFilter);
+        } else {
+            eventosMostrados.style.display = "none";
+            console.log("Oculto Cartas que no coinciden con el filtro")
+           //alert("NO COINCIDE LA BUSQUEDA");
+        }
+    });
 }
-
-
-
 
