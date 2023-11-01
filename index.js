@@ -36,6 +36,7 @@ const checkboxesIndex = document.getElementById("checkboxesIndex");
 let arrayDeCheckboxes = [];
 arrayDeCheckboxes = Array.from(new Set(data.events.map(event => event.category.replace("-", " "))));
 console.log("Por aqui los eventos: ", arrayDeCheckboxes);
+
 function checkboxesMarcar(arrayCategory) {
     arrayCategory.forEach(arrayDeCheckboxes => {
         const creadorCheckboxes = document.createElement("div")
@@ -54,6 +55,9 @@ checkboxesMarcar(arrayDeCheckboxes)
 
 checkboxesIndex.addEventListener('change', filtrarCategory)
 function filtrarCategory() {
+    filtrarCategoriaConLista(arrayDeEventos)
+}
+function filtrarCategoriaConLista(arrayDeEventos) {
     let checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value)
     console.log("Holi checked", checked);
     arrayDeEventos.forEach(function (evento) {
@@ -62,8 +66,6 @@ function filtrarCategory() {
         //checked es una array de texto, includes busca si existe ese texto en el array
         if (checked.includes(evento.category) || checked.length === 0) {
             tarjeta.style.display = "block";
-            eventsFilter.push(evento)
-            console.log("eventos de eventsFilter: ", eventsFilter);
         } else {
             tarjeta.style.display = "none";
             console.log("Oculto Cartas que no coinciden con el filtro")
@@ -74,22 +76,36 @@ function filtrarCategory() {
 
 const searchI = document.getElementById("searchIndex");
 searchIndex.addEventListener('submit', logSumit)
-function logSumit(event) {
-    console.log("formulario submited");
-    event.preventDefault();
-    const texto = document.getElementById("buscarName").value;
-    console.log("Palabra en el BUSCADOR: ", texto);
+function logSumit(_event) {
+    _event.preventDefault();
+    const texto = document.getElementById("buscarName")
+    const textSearch = texto.value;
 
-    eventsFilter.forEach(function(evento) {
-        let eventosMostrados = document.getElementById(evento._id);
-        console.log("Aqui los eventosMostrados: ",eventosMostrados);
-        if (evento.name.toLowerCase() == texto.toLowerCase() ) {
-            console.log("eventos de eventsFilter: ", eventsFilter);
-        } else {
-            eventosMostrados.style.display = "none";
-            console.log("Oculto Cartas que no coinciden con el filtro")
-           //alert("NO COINCIDE LA BUSQUEDA");
+    let eventsFilter = []
+    if(textSearch != ""){
+        eventsFilter = data.events.filter(event => event.name.toLowerCase().includes(textSearch.toLowerCase())   )
+        let existEvents = eventsFilter.length > 0;
+        if(!existEvents){
+            alert("NO COINCIDE LA BUSQUEDA")
+            return
         }
-    });
+    }else{
+        eventsFilter = data.events
+    }
+    
+    arrayDeEventos.forEach(function (evento) {
+        let tarjeta = document.getElementById(evento._id); // Obtiene html de la tarjeta: <div>
+
+        if (eventsFilter.includes(evento)) {
+            tarjeta.style.display = "block";
+            existEvents = true;
+        } else {
+            tarjeta.style.display = "none";
+            console.log("Oculto Cartas que no coinciden con el filtro buscar")
+        }
+        filtrarCategoriaConLista(eventsFilter)
+    })
+
+
 }
 
